@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import Header from './Header';
 import RouterOutlet from './routes';
+import { logout, getLoggedUser } from './services/LocalStorageService';
 import './App.css';
 
 const LoginContext = new React.createContext({
@@ -15,7 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged : '',
+      isLogged : getLoggedUser(),
       login: this.login,
       logout: this.logout
     }
@@ -26,7 +27,8 @@ class App extends Component {
   };
 
   logout = () => {
-    this.setState({ isLogged: ''})
+    this.setState({ isLogged: ''});
+    logout();
   };
 
   render() {

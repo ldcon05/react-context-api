@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { LoginContext } from './App';
+import { setLoggedUser } from './services/LocalStorageService';
 
 class Login extends Component {
   render() {
@@ -16,6 +17,7 @@ class Login extends Component {
         .post('http://localhost:9000/api/login', { email, password})
         .then(loggedUser => {
           loginContext();
+          setLoggedUser(loggedUser.data);
           this.props.history.push('/');
         })
         .catch(error => {})

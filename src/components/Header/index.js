@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {LoginContext} from './App'
-import logo from './logo.svg';
+import {LoginContext} from '../App'
+import logo from '../../assets/img/logo.svg';
 
 export default (props) => (
   <header className="App-header">
@@ -10,8 +10,7 @@ export default (props) => (
     <h1 className="App-title">Welcome to React</h1>
     <LoginContext.Consumer>
       {value => {
-        console.log(value);
-        if(value.isLogged === ''){
+        if(!value.isLogged){
           return <button onClick={value.login}>Login</button>
         }else {
           return <button onClick={value.logout}>Logout</button>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import Header from './Header';
-import RouterOutlet from './routes';
-import { logout, getLoggedUser } from './services/LocalStorageService';
+import Header from '../Header';
+import RouterOutlet from '../../routes';
+import { logout, getLoggedUser } from '../../services/LocalStorageService';
 import './App.css';
 
 const LoginContext = new React.createContext({

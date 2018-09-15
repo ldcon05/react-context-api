@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { LoginContext } from './App';
-import { setLoggedUser } from './services/LocalStorageService';
+import { LoginContext } from '../App';
+import { setLoggedUser } from '../../services/LocalStorageService';
 
 class Login extends Component {
   render() {

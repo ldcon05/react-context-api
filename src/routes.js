@@ -13,7 +13,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 
 export default () => (
   <Switch>
-    <Route exact path='/' />
+    <ProtectedRoute exact path='/' component={Login} />
     <ProtectedRoute path="/login" component={Login} />
     <Route path="/todoist" component={Todoist} />
   </Switch>

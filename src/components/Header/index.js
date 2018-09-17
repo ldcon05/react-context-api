@@ -9,11 +9,8 @@ export default (props) => (
       <li><Link to='/'>Home</Link></li>
       <LoginContext.Consumer>
         {value => {
-          if(!value.isLogged)
-            return <li><Link to='/login'>Login</Link></li>
-          else
-            return <li onClick={value.logout}><Link to='/login'>Logout</Link></li>
-
+          if(value.isLogged)
+            return <li onClick={value.logout}><Link to='/'>Logout</Link></li>
         }}
       </LoginContext.Consumer>
     </ul>

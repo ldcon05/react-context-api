@@ -40,7 +40,6 @@
   margin-bottom: 1em;
 }
 
-
 #login-form > button {
   background-color: #fff;
   border: 2px solid #fff;
@@ -49,6 +48,13 @@
   font-size: 1.2em;
   font-weight: 800;
   margin-bottom: 1em;
+}
+
+.processAlert {
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0.5em;
+  text-align: center;
+  margin: auto;
 }
 
 

@@ -1,0 +1,72 @@
+#todoist > h1 {
+  color: #17BEBB;
+  text-align: center;
+  font-size: 3em;
+  letter-spacing: 7px;
+}
+
+
+/* Form */
+
+#todo-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 2em 1em;
+  width: 60%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#todo-form > input {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1em;
+  padding: 0.5em;
+}
+
+
+#todo-form > button {
+  background-color: #fff;
+  border: 2px solid #fff;
+  color: #202124;
+  padding: 0.5em 1em;
+  font-size: 1.1em;
+  font-weight: 800;
+}
+
+
+/* Note List */
+
+.scroller {
+  height: 20em;
+  overflow: auto;
+}
+
+#notes {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 50%;
+  margin: auto;
+}
+
+#notes li {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(0, 0, 0, 0.15);
+  text-transform: lowercase;
+}
+
+#notes b {
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 0.5em 1em;
+  margin-right: 1em;
+  color: #17BEBB;
+}
+

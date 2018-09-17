@@ -36,7 +36,7 @@ class App extends Component {
       <Router>
         <div>
           <LoginContext.Provider value={ this.state }>
-            <div className="App">
+            <div>
               {<Header login={this.login} logout={this.logout}/>}
             </div>
             <RouterOutlet/>

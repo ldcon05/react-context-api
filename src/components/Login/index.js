@@ -3,6 +3,9 @@ import axios from 'axios';
 
 import { LoginContext } from '../App';
 import { setLoggedUser } from '../../services/LocalStorageService';
+import logo from '../../assets/img/logo.svg';
+import './login.css'
+
 
 class Login extends Component {
   render() {
@@ -18,26 +21,30 @@ class Login extends Component {
         .then(loggedUser => {
           loginContext();
           setLoggedUser(loggedUser.data);
-          this.props.history.push('/');
+          this.props.history.push('/todoist');
         })
         .catch(error => {})
     };
 
     return (
-      <div>
+      <section id="login" className="container">
+        <div className="app-logo">
+          <img src={logo} className="img-responsive" alt="logo" />
+          <hr />
+        </div>
         <LoginContext.Consumer>
           {clickEvent => {
             return (
               <form id="login-form" onSubmit={ e => login( e,  clickEvent.login ) }>
                 <input type="email" placeholder="Enter your email"/>
                 <input type="password" placeholder="Enter your password"/>
-                <button>Login</button>
+                <button>LOGIN</button>
                 <br/>
               </form>
             )
           }}
         </LoginContext.Consumer>
-      </div>
+      </section>
     );
   }
 }

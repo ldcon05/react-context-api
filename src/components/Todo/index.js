@@ -1,55 +1,55 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './todo.css';
+import NoteList from './noteList';
 
-const notes = [
-  {
-    id: 1,
-    value: "Clean my workspace"
-  },
-  {
-    id: 2,
-    value: "Drink my water"
-  },
-  {
-    id: 3,
-    value: "Wash my teeth"
-  },
-  {
-    id: 4,
-    value: "Read my book"
-  },
-]
-
-function NoteList(props) {
-  const notes = props.notes;
-  const listItems = notes.map((note, index) =>
-    <li key={note.id}><b>{index + 1}</b> {note.value}</li>
-  );
-  return (
-    <ul id="notes">{listItems}</ul>
-  );
-}
+const notes = [];
+const TODOIST_API = 'http://127.0.0.1:8000/todoist/';
+const getNotes = () => axios.get(TODOIST_API);
 
 export default class Todoist extends Component{
   constructor(props) {
-    super(props)
-    this.state = {notes: notes}
+    super(props);
+    this.state = {notes: notes};
   }
 
+  componentDidMount() {
+    getNotes()
+      .then(({data}) => {
+        notes.push(...data);
+        this.setState({ notes: notes })
+      })
+      .catch(error => {})
+  }
 
   render() {
     const addNote = (e) => {
       e.preventDefault();
 
-      notes.push({
-        id: notes.length + 1,
-        value: this.refs.noteContent.value
-      })
-      this.setState({ notes: notes })
-      this.refs.noteForm.reset();
-    }
+      axios
+        .post(TODOIST_API, { content: this.refs.noteContent.value })
+        .then(({data}) => {
+          notes.push(data);
+          this.setState({ notes: notes })
+          this.refs.noteForm.reset();
+        })
+        .catch(error => {});
+    };
 
+    const deleteNote = (e) => {
+      const noteId = e.target.parentElement.getAttribute('id');
+      axios
+        .delete(TODOIST_API + noteId)
+        .then(data => {
+          let indexNote = notes.findIndex(function (note) {
+            return note.id === noteId;
+          });
+          notes.splice(indexNote,1);
+          this.setState({ notes: notes });
+        })
+        .catch(error => {});
+    };
 
     return (
       <section id="todoist" className="container">
@@ -59,7 +59,7 @@ export default class Todoist extends Component{
           <button>Add Note</button>
         </form>
         <div className="scroller">
-          <NoteList notes={this.state.notes}></NoteList>
+          <NoteList notes={this.state.notes} delete={deleteNote}></NoteList>
         </div>
       </section>
     );
